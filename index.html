@@ -10,8 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1B2F52; --navy-2:#27416E; --steel:#5E6B7E; --line:#D8DDE5; --ground:#F3F5F8; --paper:#FFFFFF;
-  --hivis:#E8632B; --hivis-soft:#FDEBE2; --ok:#1F7A4D; --ok-soft:#E3F3EA; --ink:#1A2230;
+  --navy:#111111; --steel:#625D53; --line:#DDD7CA; --ground:#F4F2EC; --paper:#FFFFFF;
+  --hivis:#B88746; --hivis-soft:#FBF3DC; --gold-lite:#FDF5A6; --gold:linear-gradient(90deg,#B88746 0%,#E9D58A 55%,#FDF5A6 100%);
+  --ok:#1F7A4D; --ok-soft:#E3F3EA; --ink:#141414;
   --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
 }
@@ -20,20 +21,21 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.5 var(--body);padding:0 16px env(safe-area-inset-bottom,0px)}
 .wrap{max-width:680px;margin:0 auto;padding-block:20px 48px;display:grid;gap:18px}
-header.top{background:var(--navy);color:#fff;margin:0 -16px;padding:22px 16px 20px;padding-top:calc(22px + env(safe-area-inset-top,0px))}
+header.top{background:#000;color:#fff;margin:0 -16px;padding:22px 16px 20px;padding-top:calc(22px + env(safe-area-inset-top,0px))}
 header.top .in{max-width:680px;margin:0 auto;display:grid;gap:6px}
-.eyebrow{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#AFC0DA}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#D8C58A}
+.logo{width:132px;height:auto;display:block;margin-bottom:6px}
 h1{font:700 clamp(28px,7vw,38px)/1.05 var(--display);margin:0;letter-spacing:.01em;text-wrap:balance}
-.lede{margin:0;color:#DCE4F1;max-width:60ch}
+.lede{margin:0;color:#DAD6CC;max-width:60ch}
 .steps{display:flex;gap:8px;margin-top:10px}
 .steps span{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.22)}
-.steps span.on{background:var(--hivis)}
+.steps span.on{background:var(--gold)}
 section.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px}
 h2{font:700 22px/1.15 var(--display);margin:0;color:var(--navy);text-wrap:balance}
 .hint{margin:0;color:var(--steel);font-size:15px}
 label.f{display:grid;gap:6px;font-weight:600}
 input[type=text],input[type=tel],input[type=email],textarea,select{font:inherit;font-weight:400;width:100%;padding:12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
-input:focus,textarea:focus,select:focus,button:focus-visible,.opt input:focus-visible+span{outline:3px solid rgba(232,99,43,.35);outline-offset:1px;border-color:var(--hivis)}
+input:focus,textarea:focus,select:focus,button:focus-visible,.opt input:focus-visible+span{outline:3px solid rgba(184,135,70,.4);outline-offset:1px;border-color:var(--hivis)}
 .saved{font-size:14px;color:var(--ok);font-weight:600;min-height:1.4em}
 .choices{display:grid;gap:8px}
 .opt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;background:#fff}
@@ -50,37 +52,40 @@ input:focus,textarea:focus,select:focus,button:focus-visible,.opt input:focus-vi
 .scale span{display:grid;gap:2px;justify-items:center;text-align:center;padding:8px 2px;border:1.5px solid var(--line);border-radius:8px;font-size:11.5px;line-height:1.15;color:var(--steel);min-height:64px;align-content:center}
 .scale span b{font:700 20px/1 var(--display);color:var(--ink)}
 .scale input:checked+span{border-color:var(--hivis);background:var(--hivis-soft);color:var(--ink)}
-.scale input:focus-visible+span{outline:3px solid rgba(232,99,43,.35)}
+.scale input:focus-visible+span{outline:3px solid rgba(184,135,70,.4)}
 .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--steel)}
 .legend b{color:var(--ink)}
-.btn{font:700 17px/1 var(--display);letter-spacing:.03em;border:0;border-radius:8px;padding:15px 20px;background:var(--hivis);color:#fff;cursor:pointer;width:100%}
-.btn[disabled]{background:#C9CFD8;cursor:not-allowed}
+.btn{font:700 17px/1 var(--display);letter-spacing:.03em;border:0;border-radius:8px;padding:15px 20px;background:var(--gold);color:#000;cursor:pointer;width:100%}
+.btn[disabled]{background:#D3CEC3;color:#6E685D;cursor:not-allowed}
 .btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
 .row{display:flex;gap:10px;flex-wrap:wrap}
 .row>*{flex:1 1 180px}
 .err{color:#B3261E;font-weight:600;font-size:15px;margin:0}
 .progress{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding:8px 0;font-size:14px;color:var(--steel);display:flex;justify-content:space-between;gap:10px}
 /* result */
-section.card.result{border:0;background:var(--navy);color:#fff}
-.result .eyebrow{color:#AFC0DA}
+section.card.result{border:0;background:#000;color:#fff}
+.result .eyebrow{color:#D8C58A}
 .tier{font:700 clamp(30px,8vw,42px)/1 var(--display);margin:0}
 .pay{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
-.pay strong{font:700 clamp(34px,9vw,48px)/1 var(--display);color:var(--hivis);font-variant-numeric:tabular-nums}
-.pay span{color:#DCE4F1}
-.compare{padding:12px 14px;border-radius:8px;background:rgba(232,99,43,.16);border:1px solid rgba(232,99,43,.55);font-size:16px;line-height:1.45}
+.pay strong{font:700 clamp(34px,9vw,48px)/1 var(--display);background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.salary{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;padding:10px 12px;border-radius:8px;background:rgba(253,245,166,.08);border:1px solid rgba(184,135,70,.55)}
+.salary span{color:#DAD6CC;font-size:15px}
+.salary strong{font:700 clamp(24px,6.5vw,32px)/1 var(--display);color:#FDF5A6;font-variant-numeric:tabular-nums}
+.pay span{color:#DAD6CC}
+.compare{padding:12px 14px;border-radius:8px;background:rgba(253,245,166,.06);border:1px solid rgba(184,135,70,.45);font-size:16px;line-height:1.45}
 .compare b{color:#fff;font-variant-numeric:tabular-nums}
 .call{display:grid;gap:8px;padding-top:4px}
 .call span{font:700 19px/1.2 var(--display)}
 .call .btn{display:block;text-align:center;text-decoration:none}
 .call .btn.ghost{color:#fff;border-color:rgba(255,255,255,.45)}
-.nineday{display:flex;gap:16px;align-items:center;background:var(--hivis);color:#fff;border-radius:10px;padding:16px 18px}
+.nineday{display:flex;gap:16px;align-items:center;background:var(--gold);color:#000;border-radius:10px;padding:16px 18px}
 .nd-big{display:flex;align-items:center;gap:6px;flex:none}
 .nd-big span{font:700 64px/.85 var(--display)}
 .nd-big small{font:700 15px/1.05 var(--display);text-transform:uppercase;letter-spacing:.06em}
 .nd-copy{display:grid;gap:2px}
 .nd-copy strong{font:700 20px/1.15 var(--display);text-wrap:balance}
 .nd-copy em{font-style:normal;font-size:13px;opacity:.85}
-.note{margin:0;color:#DCE4F1;font-size:14.5px}
+.note{margin:0;color:#DAD6CC;font-size:14.5px}
 .perks{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .perks li{padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.08)}
 .ladder{display:grid;gap:6px}
@@ -95,7 +100,8 @@ footer{font-size:13px;color:var(--steel);text-align:center}
 </head>
 <body>
 <header class="top"><div class="in">
-  <div class="eyebrow">InTouch Projects · Metal Roofing Team</div>
+  <img class="logo" src="logo.svg" alt="InTouch Projects – Storm Damage Specialists" width="132" height="115">
+  <div class="eyebrow">Metal Roofing Team · Now hiring</div>
   <h1>Check your wage against InTouch</h1>
   <p class="lede">Metal roofers: tell us what you're paid now and what you can do on a roof. In five minutes you'll see what InTouch pays for your skills, side by side with your current wage.</p>
   <div class="steps" aria-hidden="true"><span id="s1" class="on"></span><span id="s2"></span><span id="s3"></span></div>
@@ -148,6 +154,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
   <div class="eyebrow">Your indicative level</div>
   <p class="tier" id="rTier"></p>
   <div class="pay"><strong id="rPay"></strong><span>per hour · 38-hour week</span></div>
+  <div class="salary"><span>Base salary</span><strong id="rSalary"></strong><span>a year + super</span></div>
   <div class="compare" id="rCompare" hidden></div>
   <p class="note">This is a guide from your answers. Your starting rate is confirmed after a paid trial day and reference checks.</p>
   <ul class="perks" id="rPerks"></ul>
@@ -209,18 +216,18 @@ const TIERS=[
  {name:"Tier 2 – Roofer",range:"$47 – $55",rates:[47,51,55],
   purpose:"Completes a standard residential metal re-roof or repair section on their own, from set-out through sheeting, cutting in, capping and riveting off, to a clean, leak-free finish.",
   duties:["Batten replacement (metal and timber) and basic tie-downs","Setting out, laying sheets and screwing off a full roof face","Cutting valleys, valley irons and installing ridge caps","Barge caps, gable rolls and flashings under guidance; riveting off and sealing","Fascia, gutters and downpipes to fall; photos and notes for every job","Helping train Tier 1 roofing hands"],
-  needs:["White Card and Working at Heights","1+ year of metal roofing","First Aid within 6 months of starting","Cert III Roof Plumbing enrolment or RPL encouraged"]},
+  needs:["White Card","1+ year of metal roofing","Working at Heights and First Aid are a plus; we can help you get them","Cert III Roof Plumbing enrolment or RPL encouraged"]},
  {name:"Tier 3 – Senior Roofer",range:"$60 – $65",rates:[60,62.5,65],
   purpose:"The most skilled pair of hands in the crew. Takes on the hard roofs: multiple valleys, parapets, box gutters and custom flashings. Runs the roof on the day when the Team Leader is off site, and teaches Tier 1 and 2.",
   duties:["Running the roof on the day: toolbox talk, SWMS check, task allocation, weather calls","Complex roofs: multiple valleys and hips, dormers, skillion and low-pitch roofs","Parapet cappings, box gutters, sumps and rainheads","Scribing to any surface; measuring and ordering custom flashings","Final walk-over and water tests; coaching and signing off Tier 1 and 2"],
-  needs:["White Card, Working at Heights, Asbestos awareness and First Aid","2+ years of metal roofing","Able to do every roofing skill on your own, first time right","A licence isn't required for Tier 3; a QBCC Roof & Wall Cladding or plumbing licence opens the $65 Licensed Tradesman rate"]},
+  needs:["White Card","2+ years of metal roofing","Working at Heights, Asbestos awareness and First Aid are a plus; we can help you get them","Able to do every roofing skill on your own, first time right","A licence isn't required for Tier 3; a QBCC Roof & Wall Cladding or plumbing licence opens the $65 Licensed Tradesman rate"]},
  {name:"Roofing Team Leader",range:"$70",rates:[70],
   purpose:"Runs the roofing crews across multiple residential jobs. Owns safety, quality, productivity and training, signs off every roof, and is the roofing contact for Supervisors and the Construction Manager.",
   duties:["Reading the scope, planning each job and ordering materials right first time","Allocating crews and managing jobs to budgeted hours","Toolbox talks, SWMS reviews and enforcing PPE and voltage testing","Final quality sign-off on every roof; owning any leak callbacks","Reviewing skills checks with the team and recommending tier moves"],
   needs:["All Tier 3 tickets plus a QBCC Roof & Wall Cladding or plumbing licence","3+ years of metal roofing","Able to teach every roofing skill and run a crew of 2–4 on your own"]}
 ];
 const YEARS_MIN=[0,1,2,3];
-const TICKET_GATE=[[],["wah"],["wah","asb","fa"],["wah","asb","fa","lic"]];
+const TICKET_GATE=[[],[],[],["lic"]];
 
 /* ---------- state ---------- */
 const $=s=>document.querySelector(s);
@@ -296,7 +303,7 @@ function score(){
   let tier=0;
   for(let i=1;i<4;i++){ if(skillsOk(i)&&ticketOk(i)&&yrs>=YEARS_MIN[i]) tier=i; else break; }
   const roofAll3=ROOF.every(q=>R[q.id]>=3);
-  const licQual=lic&&roofAll3&&T.wah&&T.asb&&yrs>=2;
+  const licQual=lic&&roofAll3&&yrs>=2;
   if(licQual&&tier<2) tier=2;
   const teach=ROOF.filter(q=>R[q.id]>=4).length;
   let step=0, licensed=false;
@@ -322,7 +329,7 @@ function pdfHtml(r){
   const when=new Date().toLocaleString("en-AU",{timeZone:"Australia/Brisbane",dateStyle:"medium",timeStyle:"short"});
   return `<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1A2230;margin:28px}h1{color:#1B2F52;font-size:20pt;margin:0}h2{color:#1B2F52;font-size:13pt;border-bottom:2px solid #1B2F52;padding-bottom:3px;margin-top:22px}.sub{color:#5E6B7E;margin:2px 0 14px}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #D8DDE5}th{width:42%;color:#444;font-weight:normal}td{font-weight:bold}.box{background:#FDEBE2;border:1px solid #E8632B;padding:10px 12px;margin-top:10px}</style></head><body>
 <h1>Check Your Wage Against InTouch</h1><p class="sub">InTouch Projects · Submitted ${esc(when)}</p>
-<div class="box"><b>Indicative result:</b> ${esc(TIERS[r.tier].name)} · ${esc(stepName)} · $${r.rate.toFixed(2)}/hr${r.ute?" · ute + fuel card":""}<br>Applicant was shown the range ${esc(TIERS[r.tier].range)}/hr, subject to a paid trial day and reference checks.</div>
+<div class="box"><b>Indicative result:</b> ${esc(TIERS[r.tier].name)} · ${esc(stepName)} · $${r.rate.toFixed(2)}/hr${r.ute?" · ute + fuel card":""}<br>Applicant was shown the range ${esc(TIERS[r.tier].range)}/hr (base salary ${money(TIERS[r.tier].rates[0]*1976)}${TIERS[r.tier].rates.length>1?" – "+money(TIERS[r.tier].rates[TIERS[r.tier].rates.length-1]*1976):""} a year), subject to a paid trial day and reference checks.</div>
 <h2>About the applicant</h2><table>${rows([["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"],["Current hourly rate",wageNum()?"$"+wageNum().toFixed(2):"Not given"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]])}</table>
 <h2>Skills (0 never done it – 4 can teach it)</h2><table>${rows(QS.map((q,i)=>[`${i+1}. ${q.t}`,`${st.ratings[q.id]} – ${SCALE[st.ratings[q.id]]}`]))}</table>
 ${r.next!==null?`<h2>To reach ${esc(TIERS[r.next].name)}</h2><p>${r.gaps.map(esc).join(" · ")||"Nothing on this check"}</p>`:""}
@@ -359,6 +366,7 @@ $("#submit").addEventListener("click",()=>{
   $("#rTier").textContent=T.name;
   $("#rPay").textContent=T.range;
   const w=wageNum(), lo=T.rates[0], hi=T.rates[T.rates.length-1], cmp=$("#rCompare");
+  $("#rSalary").textContent=lo===hi?money(lo*1976):money(lo*1976)+" – "+money(hi*1976);
   if(w){
     let msg;
     if(w<lo){const a=lo-w,b=hi-w;msg=`You're on <b>$${w.toFixed(2)}</b>/hr now. At InTouch that's <b>${a===b?"$"+a.toFixed(2):"$"+a.toFixed(2)+" – $"+b.toFixed(2)}</b> more per hour, or <b>${a===b?money(a*1976):money(a*1976)+" – "+money(b*1976)}</b> more a year.`}
@@ -376,7 +384,7 @@ $("#submit").addEventListener("click",()=>{
   $("#rDuties").innerHTML=T.duties.map(d=>`<li>${esc(d)}</li>`).join("");
   $("#rNeeds").innerHTML=T.needs.map(d=>`<li>${esc(d)}</li>`).join("");
   if(r.next!==null&&r.gaps.length){$("#gapTitle").textContent="To move up to "+TIERS[r.next].name;$("#rGaps").innerHTML=r.gaps.map(g=>`<li>${esc(g)}</li>`).join("");$("#gapBox").hidden=false}else $("#gapBox").hidden=true;
-  $("#ladder").innerHTML=TIERS.map((t,i)=>`<div class="rung${i===r.tier?" me":""}"><span>${t.name}${i===r.tier?" <small>· your level</small>":""}</span><span>${t.range}/hr</span></div>`).join("");
+  $("#ladder").innerHTML=TIERS.map((t,i)=>`<div class="rung${i===r.tier?" me":""}"><span>${t.name}${i===r.tier?" <small>· your level</small>":""}</span><span style="text-align:right">${t.range}/hr<br><small>${money(t.rates[0]*1976)}${t.rates.length>1?" – "+money(t.rates[t.rates.length-1]*1976):""} a year</small></span></div>`).join("");
   ["#step2","#step3","#progress","#submit"].forEach(s=>$(s).hidden=true);
   ["#result","#roleCard","#ladderCard"].forEach(s=>$(s).hidden=false);
   $("#s3").classList.add("on");
