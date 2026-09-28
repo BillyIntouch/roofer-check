@@ -195,33 +195,36 @@ const TICKETS=[["white","White Card (construction induction)"],["wah","Working a
 const STARTS=["Straight away","Within 2 weeks","Within a month","More than a month"];
 const SCALE=["Never done it","Seen it / helped","With someone checking","On my own","Can teach it"];
 // req = minimum rating for [Tier 1, Tier 2, Tier 3, Team Leader]
+const CLASSES=["Safety and site set-up","Roof removal (re-roofing)","Batten replacement and tie downs","Insulation installation","Ground spread and screwing off","Cutting valleys, laying sheets, ridge caps and gable rolls","Scribing","Barge cap flashings and flashings","Riveting off and sealing","Fascia, gutters and downpipes","Parapets and box gutters","Quality and paperwork","Running a crew"];
 const QS=[
- {id:"safety",g:"Safety and strip-out",t:"Safety and site set-up",d:"SWMS, ladders, harness and anchors, voltage-testing the roof, earthing checks, asbestos awareness, protecting the site",req:[2,3,3,4]},
- {id:"removal",g:"Safety and strip-out",t:"Roof removal (re-roofing)",d:"Removing ridge caps and flashings, unscrewing and lifting old sheets or tiles, lowering waste to the skip, spotting hidden damage",req:[2,3,3,4]},
- {id:"batTimber",g:"Roof frame and structural timber",t:"Batten replacement – timber",d:"Replacing rotten or damaged timber battens, correct spacing and fixings for the wind rating",req:[0,3,3,4]},
- {id:"batMetal",g:"Roof frame and structural timber",t:"Batten replacement – metal (top-hat)",d:"Fixing metal top-hat battens, correct screws and spacing to the span tables",req:[0,3,3,4]},
- {id:"tiedown",g:"Roof frame and structural timber",t:"Basic tie-downs",d:"Tie-down straps, cyclone screws and extra fixings to bring a roof up to its wind rating",req:[0,2,3,4]},
- {id:"collar",g:"Roof frame and structural timber",t:"Structural timber – collar ties",d:"Measuring, cutting and fixing collar ties to stop rafters spreading",req:[0,1,3,4]},
- {id:"struts",g:"Roof frame and structural timber",t:"Structural timber – struts, underpurlins and strutting beams",d:"Installing or replacing struts, underpurlins and strutting beams to support the roof frame",req:[0,1,3,4]},
- {id:"rafters",g:"Roof frame and structural timber",t:"Structural timber – rafter repairs",d:"Sistering, packing or replacing damaged rafters and truss members, squaring and straightening the frame",req:[0,0,2,4]},
- {id:"sarking",g:"Sarking and insulation",t:"Sarking installation",d:"Rolling out sarking square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations",req:[2,3,3,4]},
- {id:"anticon",g:"Sarking and insulation",t:"Anticon / insulation blanket",d:"Rolling out Anticon blanket correct side down, lapping and taping joints, tensioning and draping",req:[2,3,3,4]},
- {id:"bushfire",g:"Sarking and insulation",t:"Bushfire (BAL) roofing",d:"Bushfire-rated sarking and blanket, ember guards and sealing for BAL-rated homes",req:[0,2,3,4]},
- {id:"spread",g:"Sheeting",t:"Ground spread (ridges / valleys / sheets)",d:"Sorting sheets by run and length, pre-cutting ridges, valleys and hip sheets on the ground",req:[2,3,3,4]},
- {id:"laying",g:"Sheeting",t:"Laying sheets",d:"Setting out the first sheet, gutter overhang, side laps, keeping sheets square to the ridge",req:[2,3,3,4]},
- {id:"screwing",g:"Sheeting",t:"Screwing off",d:"Right screw class and length, manufacturer's pattern, straight string-lined rows, turn-ups and turn-downs",req:[2,3,3,4]},
- {id:"valleys",g:"Cutting in and capping",t:"Cutting valleys",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips",req:[1,3,3,4]},
- {id:"ridgecaps",g:"Cutting in and capping",t:"Installing ridge caps",d:"Ridge and hip caps set out and lapped away from the weather, foam closures, fixed to spec",req:[0,3,3,4]},
- {id:"scribe",g:"Cutting in and capping",t:"Scribing",d:"Scribing sheets and flashings to walls, fascias and out-of-square lines",req:[0,2,3,4]},
- {id:"barge",g:"Flashings and finishing",t:"Barge cap flashings",d:"Setting out, cutting and fixing barge caps along gable edges",req:[0,3,3,4]},
- {id:"gable",g:"Flashings and finishing",t:"Gable rolls",d:"Fitting gable rolls and finishing the gable ends",req:[0,2,3,4]},
- {id:"flash",g:"Flashings and finishing",t:"Flashings",d:"Apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
- {id:"rivet",g:"Flashings and finishing",t:"Riveting off and sealing",d:"Stitching laps with sealed rivets, neutral-cure silicone, which metals can't be mixed, swarf removal",req:[0,3,3,4]},
- {id:"gutter",g:"Roof plumbing",t:"Fascia, gutters and downpipes",d:"Setting gutter fall, brackets, joins and stop-ends, outlets and sumps, downpipes, overflow measures",req:[0,2,3,4]},
- {id:"parapet",g:"Roof plumbing",t:"Parapets and box gutters",d:"Parapet cappings and flashings, box gutters, sumps, overflows and rainheads",req:[0,1,3,4]},
- {id:"quality",g:"Quality and leadership",t:"Quality and paperwork",d:"Photos of the job, final walk-over, water tests, job notes, dealing with the customer on site",req:[0,3,3,4]},
- {id:"crew",g:"Quality and leadership",t:"Running a crew",d:"Reading the scope and planning the day, ordering materials, toolbox talks, allocating the crew, managing hours",req:[0,1,2,3]}
+ {id:"safety",c:1,t:"Safety and site set-up",d:"SWMS, ladders, harness and anchors, voltage-testing the roof, earthing checks, asbestos awareness, protecting the site",req:[2,3,3,4]},
+ {id:"removal",c:2,t:"Roof removal (re-roofing)",d:"Removing ridge caps and flashings, unscrewing and lifting old sheets or tiles, lowering waste to the skip, spotting hidden damage",req:[2,3,3,4]},
+ {id:"batTimber",c:3,t:"Batten replacement – timber",d:"Replacing rotten or damaged timber battens, correct spacing and fixings for the wind rating",req:[0,3,3,4]},
+ {id:"batMetal",c:3,t:"Batten replacement – metal (top-hat)",d:"Fixing metal top-hat battens, correct screws and spacing to the span tables",req:[0,3,3,4]},
+ {id:"tiedown",c:3,t:"Basic tie downs",d:"Tie-down straps, cyclone screws and extra fixings to bring a roof up to its wind rating",req:[0,2,3,4]},
+ {id:"collar",c:3,t:"Structural tie downs – collar ties",d:"Measuring, cutting and fixing collar ties to stop rafters spreading",req:[0,1,3,4]},
+ {id:"struts",c:3,t:"Structural tie downs – struts, underpurlins and strutting beams",d:"Installing or replacing struts, underpurlins and strutting beams to support the roof frame",req:[0,1,3,4]},
+ {id:"rafters",c:3,t:"Structural tie downs – rafter repairs",d:"Sistering, packing or replacing damaged rafters and truss members, squaring and straightening the frame",req:[0,0,2,4]},
+ {id:"sarking",c:4,t:"Sarking",d:"Rolling out sarking square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations",req:[2,3,3,4]},
+ {id:"anticon",c:4,t:"Anticon / insulation blanket",d:"Rolling out Anticon blanket correct side down, lapping and taping joints, tensioning and draping",req:[2,3,3,4]},
+ {id:"bushfire",c:4,t:"Bushfire (BAL) roofing",d:"Bushfire-rated sarking and blanket, ember guards and sealing for BAL-rated homes",req:[0,2,3,4]},
+ {id:"spread",c:5,t:"Ground spread (ridges / valleys / sheets)",d:"Sorting sheets by run and length, pre-cutting ridges, valleys and hip sheets on the ground",req:[2,3,3,4]},
+ {id:"screwing",c:5,t:"Screwing off",d:"Right screw class and length, manufacturer's pattern, straight string-lined rows, turn-ups and turn-downs",req:[2,3,3,4]},
+ {id:"valleys",c:6,t:"Cutting valleys",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips",req:[1,3,3,4]},
+ {id:"laying",c:6,t:"Laying sheets",d:"Setting out the first sheet, gutter overhang, side laps, keeping sheets square to the ridge",req:[2,3,3,4]},
+ {id:"ridgecaps",c:6,t:"Installing ridge caps",d:"Ridge and hip caps set out and lapped away from the weather, foam closures, fixed to spec",req:[0,3,3,4]},
+ {id:"gable",c:6,t:"Gable rolls",d:"Fitting gable rolls and finishing the gable ends",req:[0,2,3,4]},
+ {id:"scribe",c:7,t:"Scribing",d:"Scribing sheets and flashings to walls, fascias and out-of-square lines",req:[0,2,3,4]},
+ {id:"barge",c:8,t:"Barge cap flashings",d:"Setting out, cutting and fixing barge caps along gable edges",req:[0,3,3,4]},
+ {id:"flash",c:8,t:"Flashings",d:"Apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
+ {id:"rivet",c:9,t:"Riveting off and sealing",d:"Stitching laps with sealed rivets, neutral-cure silicone, which metals can't be mixed, swarf removal",req:[0,3,3,4]},
+ {id:"gutter",c:10,t:"Fascia, gutters and downpipes",d:"Setting gutter fall, brackets, joins and stop-ends, outlets and sumps, downpipes, overflow measures",req:[0,2,3,4]},
+ {id:"parapet",c:11,t:"Parapets and box gutters",d:"Parapet cappings and flashings, box gutters, sumps, overflows and rainheads",req:[0,1,3,4]},
+ {id:"quality",c:12,t:"Quality and paperwork",d:"Photos of the job, final walk-over, water tests, job notes, dealing with the customer on site",req:[0,3,3,4]},
+ {id:"crew",c:13,t:"Running a crew",d:"Reading the scope and planning the day, ordering materials, toolbox talks, allocating the crew, managing hours",req:[0,1,2,3]}
 ];
+// question label like 3.2, or just 7 when a class has one question
+const qNo=q=>{const same=QS.filter(x=>x.c===q.c);return same.length>1?q.c+"."+(same.indexOf(q)+1):String(q.c)};
 const ROOF=QS.filter(q=>q.id!=="crew");
 const TIERS=[
  {name:"Tier 1 – Roofing Hand",range:"$35 – $42",rates:[35,38.5,42],
@@ -255,8 +258,8 @@ let leadSent=false, sid=Math.random().toString(36).slice(2,10);
 $("#years").innerHTML=YEARS.map(([v,l])=>`<label class="opt"><input type="radio" name="years" id="y-${v}" value="${v}"><span>${l}</span></label>`).join("");
 $("#tickets").innerHTML=TICKETS.map(([v,l])=>`<label class="opt"><input type="checkbox" id="t-${v}" value="${v}"><span>${l}</span></label>`).join("")+`<label class="opt"><input type="checkbox" id="t-none" value="none"><span>None of these yet</span></label>`;
 $("#start").innerHTML=STARTS.map((l,i)=>`<label class="opt"><input type="radio" name="start" id="st-${i}" value="${l}"><span>${l}</span></label>`).join("");
-$("#skills").innerHTML=QS.map((q,i)=>(i===0||QS[i-1].g!==q.g?`<h3 class="grp">${q.g}</h3>`:"")+`<div class="skill" role="radiogroup" aria-labelledby="sk-${q.id}">
-  <h3 id="sk-${q.id}"><b>${i+1}</b>${q.t}</h3><p>${q.d}</p>
+$("#skills").innerHTML=QS.map((q,i)=>(i===0||QS[i-1].c!==q.c?`<h3 class="grp">${q.c}. ${CLASSES[q.c-1]}</h3>`:"")+`<div class="skill" role="radiogroup" aria-labelledby="sk-${q.id}">
+  <h3 id="sk-${q.id}"><b>${qNo(q)}</b>${q.t}</h3><p>${q.d}</p>
   <div class="scale">${SCALE.map((l,v)=>`<label><input type="radio" name="q-${q.id}" id="q-${q.id}-${v}" value="${v}"><span><b>${v}</b>${l}</span></label>`).join("")}</div></div>`).join("");
 
 /* ---------- sending ---------- */
@@ -346,7 +349,7 @@ function pdfHtml(r){
 <h1>Check Your Wage Against InTouch</h1><p class="sub">InTouch Projects · Submitted ${esc(when)}</p>
 <div class="box"><b>Indicative result:</b> ${esc(TIERS[r.tier].name)} · ${esc(stepName)} · $${r.rate.toFixed(2)}/hr${r.ute?" · ute + fuel card":""}<br>Applicant was shown the range ${esc(TIERS[r.tier].range)}/hr (base salary ${money(TIERS[r.tier].rates[0]*1976)}${TIERS[r.tier].rates.length>1?" – "+money(TIERS[r.tier].rates[TIERS[r.tier].rates.length-1]*1976):""} a year), subject to a paid trial day and reference checks.</div>
 <h2>About the applicant</h2><table>${rows([["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"],["Current hourly rate",wageNum()?"$"+wageNum().toFixed(2):"Not given"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]])}</table>
-<h2>Skills (0 never done it – 4 can teach it)</h2><table>${rows(QS.map((q,i)=>[`${i+1}. ${q.t}`,`${st.ratings[q.id]} – ${SCALE[st.ratings[q.id]]}`]))}</table>
+<h2>Skills (0 never done it – 4 can teach it)</h2><table>${rows(QS.map((q,i)=>[`${qNo(q)} ${q.t}`,`${st.ratings[q.id]} – ${SCALE[st.ratings[q.id]]}`]))}</table>
 ${r.next!==null?`<h2>To reach ${esc(TIERS[r.next].name)}</h2><p>${r.gaps.map(esc).join(" · ")||"Nothing on this check"}</p>`:""}
 <h2>Anything else</h2><p>${esc(st.other)||"–"}</p></body></html>`;
 }
@@ -366,7 +369,7 @@ function makePdf(r){
     const tk=TICKETS.filter(([v])=>st.tickets[v]).map(x=>x[1]).join(", ")||"None";
     const common={theme:"grid",styles:{fontSize:9.5,cellPadding:5,lineColor:[216,221,229]},headStyles:{fillColor:[27,47,82]},columnStyles:{0:{cellWidth:190,textColor:[94,107,126]}},margin:{left:M,right:M}};
     doc.autoTable({...common,startY:168,head:[["About the applicant",""]],body:[["Name",st.name],["Mobile",st.phone],["Email",st.email||"-"],["Suburb",st.suburb||"-"],["Current hourly rate",w?"$"+w.toFixed(2):"Not given"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]]});
-    doc.autoTable({...common,startY:doc.lastAutoTable.finalY+14,head:[["Skills (0 never done it - 4 can teach it)","Rating"]],body:QS.map((q,i)=>[(i+1)+". "+q.t,st.ratings[q.id]+" - "+SCALE[st.ratings[q.id]]]),columnStyles:{0:{cellWidth:330,textColor:[26,34,48]},1:{fontStyle:"bold"}}});
+    doc.autoTable({...common,startY:doc.lastAutoTable.finalY+14,head:[["Skills (0 never done it - 4 can teach it)","Rating"]],body:QS.map((q,i)=>[qNo(q)+" "+q.t,st.ratings[q.id]+" - "+SCALE[st.ratings[q.id]]]),columnStyles:{0:{cellWidth:330,textColor:[26,34,48]},1:{fontStyle:"bold"}}});
     let y=doc.lastAutoTable.finalY+20;
     const para=(title,text)=>{ if(y>760){doc.addPage();y=50}
       doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text(title,M,y);y+=14;
