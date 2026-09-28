@@ -321,9 +321,9 @@ $("#submit").addEventListener("click",()=>{
   const w=wageNum(), lo=T.rates[0], hi=T.rates[T.rates.length-1], cmp=$("#rCompare");
   if(w){
     let msg;
-    if(w<lo){const a=lo-w,b=hi-w;msg=`You're on <b>${w.toFixed(2)}</b>/hr now. At InTouch that's <b>${a===b?"$"+a.toFixed(2):"$"+a.toFixed(2)+" – $"+b.toFixed(2)}</b> more per hour, or <b>${a===b?money(a*1976):money(a*1976)+" – "+money(b*1976)}</b> more a year.`}
-    else if(w<hi){const b=hi-w;msg=`You're on <b>${w.toFixed(2)}</b>/hr now, inside this range. The top of your level pays <b>${b.toFixed(2)}</b> more per hour, or <b>${money(b*1976)}</b> more a year.`}
-    else msg=`You're on <b>${w.toFixed(2)}</b>/hr now, at or above this range. Talk to us: skills, tickets and a licence can take you up the ladder.`;
+    if(w<lo){const a=lo-w,b=hi-w;msg=`You're on <b>$${w.toFixed(2)}</b>/hr now. At InTouch that's <b>${a===b?"$"+a.toFixed(2):"$"+a.toFixed(2)+" – $"+b.toFixed(2)}</b> more per hour, or <b>${a===b?money(a*1976):money(a*1976)+" – "+money(b*1976)}</b> more a year.`}
+    else if(w<hi){const b=hi-w;msg=`You're on <b>$${w.toFixed(2)}</b>/hr now, inside this range. The top of your level pays <b>$${b.toFixed(2)}</b> more per hour, or <b>${money(b*1976)}</b> more a year.`}
+    else msg=`You're on <b>$${w.toFixed(2)}</b>/hr now, at or above this range. Talk to us: skills, tickets and a licence can take you up the ladder.`;
     cmp.innerHTML=msg;cmp.hidden=false;
   } else cmp.hidden=true;
   const perks=[];
