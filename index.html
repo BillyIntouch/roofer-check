@@ -146,7 +146,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
   <label class="f" for="other">Anything else you'd like us to know? <span class="hint">(optional)</span><textarea id="other" rows="3"></textarea></label>
 </section>
 
-<div class="progress" id="progress" hidden><span id="progText">0 of 16 answered</span><span id="progHint">Answer every question to see your result</span></div>
+<div class="progress" id="progress" hidden><span id="progText">0 answered</span><span id="progHint">Answer every question to see your result</span></div>
 <button class="btn" id="submit" type="button" hidden disabled>See my result and send my application</button>
 
 <!-- RESULT -->
@@ -194,13 +194,25 @@ const SCALE=["Never done it","Seen it / helped","With someone checking","On my o
 // req = minimum rating for [Tier 1, Tier 2, Tier 3, Team Leader]
 const QS=[
  {id:"safety",t:"Safety and site set-up",d:"SWMS, ladders, harness and anchors, voltage-testing the roof, earthing checks, asbestos awareness, protecting the site",req:[2,3,3,4]},
- {id:"removal",t:"Roof Removal (Re-Roofing)",d:"Removing ridge caps and flashings, unscrewing and lifting old sheets or tiles, lowering waste to the skip, spotting hidden damage",req:[2,3,3,4]},
- {id:"battens",t:"Batten Replacement (Metal / Timber) and Basic Tie Downs",d:"Checking the roof is square, replacing timber battens, fixing metal top-hat battens, basic tie-down straps and screws, straightening fascia",req:[0,3,3,4]},
- {id:"insul",t:"Insulation Installation (Sarking / Anticon / Bushfire)",d:"Sarking and Anticon blanket square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations, bushfire-rated (BAL) blanket and sarking",req:[2,3,3,4]},
- {id:"sheets",t:"Ground Spread (Ridges / Valleys / Sheets) / Laying Sheets / Screwing Off",d:"Sorting and pre-cutting ridges, valleys and sheets on the ground, setting out the first sheet, gutter overhang, side laps, laying sheets, screwing off in straight rows, turn-ups and turn-downs",req:[2,3,3,4]},
- {id:"valleys",t:"Cutting Valleys / Installing Ridge Caps",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips, installing ridge and hip caps with foam closures",req:[1,3,3,4]},
+ {id:"removal",t:"Roof removal (re-roofing)",d:"Removing ridge caps and flashings, unscrewing and lifting old sheets or tiles, lowering waste to the skip, spotting hidden damage",req:[2,3,3,4]},
+ {id:"batTimber",t:"Batten replacement – timber",d:"Replacing rotten or damaged timber battens, correct spacing and fixings for the wind rating",req:[0,3,3,4]},
+ {id:"batMetal",t:"Batten replacement – metal (top-hat)",d:"Fixing metal top-hat battens, correct screws and spacing to the span tables",req:[0,3,3,4]},
+ {id:"tiedown",t:"Basic tie-downs",d:"Tie-down straps, cyclone screws and extra fixings to bring a roof up to its wind rating",req:[0,2,3,4]},
+ {id:"collar",t:"Structural timber – collar ties",d:"Measuring, cutting and fixing collar ties to stop rafters spreading",req:[0,1,3,4]},
+ {id:"struts",t:"Structural timber – struts, underpurlins and strutting beams",d:"Installing or replacing struts, underpurlins and strutting beams to support the roof frame",req:[0,1,3,4]},
+ {id:"rafters",t:"Structural timber – rafter repairs",d:"Sistering, packing or replacing damaged rafters and truss members, squaring and straightening the frame",req:[0,0,2,4]},
+ {id:"sarking",t:"Sarking installation",d:"Rolling out sarking square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations",req:[2,3,3,4]},
+ {id:"anticon",t:"Anticon / insulation blanket",d:"Rolling out Anticon blanket correct side down, lapping and taping joints, tensioning and draping",req:[2,3,3,4]},
+ {id:"bushfire",t:"Bushfire (BAL) roofing",d:"Bushfire-rated sarking and blanket, ember guards and sealing for BAL-rated homes",req:[0,2,3,4]},
+ {id:"spread",t:"Ground spread (ridges / valleys / sheets)",d:"Sorting sheets by run and length, pre-cutting ridges, valleys and hip sheets on the ground",req:[2,3,3,4]},
+ {id:"laying",t:"Laying sheets",d:"Setting out the first sheet, gutter overhang, side laps, keeping sheets square to the ridge",req:[2,3,3,4]},
+ {id:"screwing",t:"Screwing off",d:"Right screw class and length, manufacturer's pattern, straight string-lined rows, turn-ups and turn-downs",req:[2,3,3,4]},
+ {id:"valleys",t:"Cutting valleys",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips",req:[1,3,3,4]},
+ {id:"ridgecaps",t:"Installing ridge caps",d:"Ridge and hip caps set out and lapped away from the weather, foam closures, fixed to spec",req:[0,3,3,4]},
  {id:"scribe",t:"Scribing",d:"Scribing sheets and flashings to walls, fascias and out-of-square lines",req:[0,2,3,4]},
- {id:"flash",t:"Barge Cap Flashings / Gable Rolls / Flashings",d:"Barge caps, gable rolls, apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
+ {id:"barge",t:"Barge cap flashings",d:"Setting out, cutting and fixing barge caps along gable edges",req:[0,3,3,4]},
+ {id:"gable",t:"Gable rolls",d:"Fitting gable rolls and finishing the gable ends",req:[0,2,3,4]},
+ {id:"flash",t:"Flashings",d:"Apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
  {id:"rivet",t:"Riveting off and sealing",d:"Stitching laps with sealed rivets, neutral-cure silicone, which metals can't be mixed, swarf removal",req:[0,3,3,4]},
  {id:"gutter",t:"Fascia, gutters and downpipes",d:"Setting gutter fall, brackets, joins and stop-ends, outlets and sumps, downpipes, overflow measures",req:[0,2,3,4]},
  {id:"parapet",t:"Parapets and box gutters",d:"Parapet cappings and flashings, box gutters, sumps, overflows and rainheads",req:[0,1,3,4]},
@@ -215,12 +227,12 @@ const TIERS=[
   needs:["White Card","Working at Heights, or willing to do it in your first 30 days","Driver licence preferred","No roofing experience needed at entry: apprentices and trade assistants welcome"]},
  {name:"Tier 2 – Roofer",range:"$47 – $55",rates:[47,51,55],
   purpose:"Completes a standard residential metal re-roof or repair section on their own, from set-out through sheeting, cutting in, capping and riveting off, to a clean, leak-free finish.",
-  duties:["Batten replacement (metal and timber) and basic tie-downs","Setting out, laying sheets and screwing off a full roof face","Cutting valleys, valley irons and installing ridge caps","Barge caps, gable rolls and flashings under guidance; riveting off and sealing","Fascia, gutters and downpipes to fall; photos and notes for every job","Helping train Tier 1 roofing hands"],
+  duties:["Batten replacement (metal and timber), basic tie-downs and helping with structural timber upgrades","Setting out, laying sheets and screwing off a full roof face","Cutting valleys, valley irons and installing ridge caps","Barge caps, gable rolls and flashings under guidance; riveting off and sealing","Fascia, gutters and downpipes to fall; photos and notes for every job","Helping train Tier 1 roofing hands"],
   needs:["White Card","1+ year of metal roofing","Working at Heights and First Aid are a plus; we can help you get them","Cert III Roof Plumbing enrolment or RPL encouraged"]},
  {name:"Tier 3 – Senior Roofer",range:"$60 – $65",rates:[60,62.5,65],
   purpose:"The most skilled pair of hands in the crew. Takes on the hard roofs: multiple valleys, parapets, box gutters and custom flashings. Runs the roof on the day when the Team Leader is off site, and teaches Tier 1 and 2.",
-  duties:["Running the roof on the day: toolbox talk, SWMS check, task allocation, weather calls","Complex roofs: multiple valleys and hips, dormers, skillion and low-pitch roofs","Parapet cappings, box gutters, sumps and rainheads","Scribing to any surface; measuring and ordering custom flashings","Final walk-over and water tests; coaching and signing off Tier 1 and 2"],
-  needs:["White Card","2+ years of metal roofing","Working at Heights, Asbestos awareness and First Aid are a plus; we can help you get them","Able to do every roofing skill on your own, first time right","A licence isn't required for Tier 3; a QBCC Roof & Wall Cladding or plumbing licence opens the $65 Licensed Tradesman rate"]},
+  duties:["Running the roof on the day: toolbox talk, SWMS check, task allocation, weather calls","Complex roofs: multiple valleys and hips, dormers, skillion and low-pitch roofs","Structural timber upgrades: collar ties, struts, underpurlins and rafter repairs","Parapet cappings, box gutters, sumps and rainheads","Scribing to any surface; measuring and ordering custom flashings","Final walk-over and water tests; coaching and signing off Tier 1 and 2"],
+  needs:["White Card","2+ years of metal roofing","Working at Heights, Asbestos awareness and First Aid are a plus; we can help you get them","Able to do every roofing skill on your own, first time right","Collar ties, struts and underpurlins on your own","A licence isn't required for Tier 3; a QBCC Roof & Wall Cladding or plumbing licence opens the $65 Licensed Tradesman rate"]},
  {name:"Roofing Team Leader",range:"$70",rates:[70],
   purpose:"Runs the roofing crews across multiple residential jobs. Owns safety, quality, productivity and training, signs off every roof, and is the roofing contact for Supervisors and the Construction Manager.",
   duties:["Reading the scope, planning each job and ordering materials right first time","Allocating crews and managing jobs to budgeted hours","Toolbox talks, SWMS reviews and enforcing PPE and voltage testing","Final quality sign-off on every roof; owning any leak callbacks","Reviewing skills checks with the team and recommending tier moves"],
@@ -307,9 +319,9 @@ function score(){
   if(licQual&&tier<2) tier=2;
   const teach=ROOF.filter(q=>R[q.id]>=4).length;
   let step=0, licensed=false;
-  if(tier===2){ if(licQual){step=2;licensed=true} else if(teach>=7) step=1; }
-  else if(tier===1){ const f=QS.filter(q=>R[q.id]>=q.req[2]).length; step=f===QS.length?2:f>=7?1:0; }
-  else if(tier===0){ const core=["safety","removal","insul","sheets"].every(k=>R[k]>=3); step=core&&R.valleys>=3?2:core?1:0; }
+  if(tier===2){ if(licQual){step=2;licensed=true} else if(teach>=Math.ceil(ROOF.length/2)) step=1; }
+  else if(tier===1){ const f=QS.filter(q=>R[q.id]>=q.req[2]).length; step=f===QS.length?2:f>=Math.ceil(QS.length/2)?1:0; }
+  else if(tier===0){ const core=["safety","removal","sarking","anticon","spread","laying","screwing"].every(k=>R[k]>=3); step=core&&R.valleys>=3?2:core?1:0; }
   const rate=TIERS[tier].rates[Math.min(step,TIERS[tier].rates.length-1)];
   const ute=roofAll3||tier===3;
   const next=tier<3?tier+1:null, gaps=[];
