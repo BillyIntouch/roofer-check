@@ -78,7 +78,8 @@ section.card.result{border:0;background:#000;color:#fff}
 .compare{padding:12px 14px;border-radius:8px;background:rgba(253,245,166,.06);border:1px solid rgba(184,135,70,.45);font-size:16px;line-height:1.45}
 .compare b{color:#fff;font-variant-numeric:tabular-nums}
 .call{display:grid;gap:8px;padding-top:4px}
-.call span{font:700 19px/1.2 var(--display)}
+.call span{font:700 20px/1.2 var(--display);color:#FDF5A6}
+.callsub{color:#DAD6CC;font-size:14.5px;margin-top:-4px}
 .call .btn{display:block;text-align:center;text-decoration:none}
 .call .btn.ghost{color:#fff;border-color:rgba(255,255,255,.45)}
 .nineday{display:flex;gap:16px;align-items:center;background:var(--gold);color:#000;border-radius:10px;padding:16px 18px}
@@ -161,7 +162,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
   <div class="compare" id="rCompare" hidden></div>
   <p class="note">This is a guide from your answers. Your starting rate is confirmed after a paid trial day and reference checks.</p>
   <ul class="perks" id="rPerks"></ul>
-  <div class="call"><span>Want the job? Call or text Billy to book an interview</span><a class="btn" href="tel:0488033766">Call 0488 033 766</a><a class="btn ghost" href="sms:0488033766">Text 0488 033 766</a></div>
+  <div class="call"><span>Reckon you’ve got what it takes? Get off the roof and give Robert a bell.</span><small class="callsub">Robert Cox books your interview and paid trial day.</small><a class="btn" href="tel:0493907763">Call Robert · 0493 907 763</a><a class="btn ghost" href="sms:0493907763">Text Robert · 0493 907 763</a></div>
   <p class="note" id="sendStatus"></p>
 </section>
 
@@ -179,7 +180,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
   <p class="hint">Every level works a nine-day fortnight (T&amp;Cs apply). Rates are hourly on a 38-hour week, plus super. Overtime and award allowances are extra.</p>
 </section>
 
-<footer>InTouch Projects · Storm Damage Specialists · Jobs: Billy 0488 033 766 · We only use your answers to assess your application.</footer>
+<footer>InTouch Projects · Storm Damage Specialists · Jobs: Robert Cox 0493 907 763 · We only use your answers to assess your application.</footer>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -410,7 +411,7 @@ $("#submit").addEventListener("click",()=>{
   $("#sendStatus").textContent="Sending your application…";
   const payload={type:"full",sid,subject:`New roofer applicant: ${st.name.trim()} – ${T.name}`,
     filename:`Roofer applicant - ${st.name.trim().replace(/[\\/:*?"<>|]/g,"")}.pdf`,html:pdfHtml(r),pdf:makePdf(r)};
-  send(payload).then(ok=>{$("#sendStatus").textContent=ok?`Application sent. We'll call you on ${st.phone.trim()}.`:`We couldn't send your application just now. Please call or text Billy on 0488 033 766 with your name and this result.`});
+  send(payload).then(ok=>{$("#sendStatus").textContent=ok?`Application sent. We'll call you on ${st.phone.trim()}.`:`We couldn't send your application just now. Please call or text Robert on 0493 907 763 with your name and this result.`});
 });
 </script>
 </body>
