@@ -206,18 +206,14 @@ const QS=[
  {id:"collar",c:3,t:"Structural tie downs – collar ties",d:"Measuring, cutting and fixing collar ties to stop rafters spreading",req:[0,1,3,4]},
  {id:"struts",c:3,t:"Structural tie downs – struts, underpurlins and strutting beams",d:"Installing or replacing struts, underpurlins and strutting beams to support the roof frame",req:[0,1,3,4]},
  {id:"rafters",c:3,t:"Structural tie downs – rafter repairs",d:"Sistering, packing or replacing damaged rafters and truss members, squaring and straightening the frame",req:[0,0,2,4]},
- {id:"sarking",c:4,t:"Sarking",d:"Rolling out sarking square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations",req:[2,3,3,4]},
- {id:"anticon",c:4,t:"Anticon / insulation blanket",d:"Rolling out Anticon blanket correct side down, lapping and taping joints, tensioning and draping",req:[2,3,3,4]},
- {id:"bushfire",c:4,t:"Bushfire (BAL) roofing",d:"Bushfire-rated sarking and blanket, ember guards and sealing for BAL-rated homes",req:[0,2,3,4]},
- {id:"spread",c:5,t:"Ground spread (ridges / valleys / sheets)",d:"Sorting sheets by run and length, pre-cutting ridges, valleys and hip sheets on the ground",req:[2,3,3,4]},
- {id:"screwing",c:5,t:"Screwing off",d:"Right screw class and length, manufacturer's pattern, straight string-lined rows, turn-ups and turn-downs",req:[2,3,3,4]},
+ {id:"insul",c:4,t:"Insulation installation (sarking / Anticon / bushfire)",d:"Sarking and Anticon blanket square to the gutter, lapped, taped and draped into the gutter, cut in around penetrations; bushfire-rated (BAL) sarking, blanket and ember guards",req:[2,3,3,4]},
+ {id:"spread",c:5,t:"Ground spread (ridges / valleys / sheets) and screwing off",d:"Sorting sheets by run and length, pre-cutting ridges, valleys and hip sheets on the ground; screwing off with the right screws in the manufacturer's pattern, straight string-lined rows",req:[2,3,3,4]},
  {id:"valleys",c:6,t:"Cutting valleys",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips",req:[1,3,3,4]},
  {id:"laying",c:6,t:"Laying sheets",d:"Setting out the first sheet, gutter overhang, side laps, keeping sheets square to the ridge",req:[2,3,3,4]},
  {id:"ridgecaps",c:6,t:"Installing ridge caps",d:"Ridge and hip caps set out and lapped away from the weather, foam closures, fixed to spec",req:[0,3,3,4]},
  {id:"gable",c:6,t:"Gable rolls",d:"Fitting gable rolls and finishing the gable ends",req:[0,2,3,4]},
  {id:"scribe",c:7,t:"Scribing",d:"Scribing sheets and flashings to walls, fascias and out-of-square lines",req:[0,2,3,4]},
- {id:"barge",c:8,t:"Barge cap flashings",d:"Setting out, cutting and fixing barge caps along gable edges",req:[0,3,3,4]},
- {id:"flash",c:8,t:"Flashings",d:"Apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
+ {id:"flash",c:8,t:"Barge cap flashings and flashings",d:"Barge caps along gable edges, apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
  {id:"rivet",c:9,t:"Riveting off and sealing",d:"Stitching laps with sealed rivets, neutral-cure silicone, which metals can't be mixed, swarf removal",req:[0,3,3,4]},
  {id:"gutter",c:10,t:"Fascia, gutters and downpipes",d:"Setting gutter fall, brackets, joins and stop-ends, outlets and sumps, downpipes, overflow measures",req:[0,2,3,4]},
  {id:"parapet",c:11,t:"Parapets and box gutters",d:"Parapet cappings and flashings, box gutters, sumps, overflows and rainheads",req:[0,1,3,4]},
@@ -328,7 +324,7 @@ function score(){
   let step=0, licensed=false;
   if(tier===2){ if(licQual){step=2;licensed=true} else if(teach>=Math.ceil(ROOF.length/2)) step=1; }
   else if(tier===1){ const f=QS.filter(q=>R[q.id]>=q.req[2]).length; step=f===QS.length?2:f>=Math.ceil(QS.length/2)?1:0; }
-  else if(tier===0){ const core=["safety","removal","sarking","anticon","spread","laying","screwing"].every(k=>R[k]>=3); step=core&&R.valleys>=3?2:core?1:0; }
+  else if(tier===0){ const core=["safety","removal","insul","spread","laying"].every(k=>R[k]>=3); step=core&&R.valleys>=3?2:core?1:0; }
   const rate=TIERS[tier].rates[Math.min(step,TIERS[tier].rates.length-1)];
   const ute=roofAll3||tier===3;
   const next=tier<3?tier+1:null, gaps=[];
