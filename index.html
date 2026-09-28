@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Roofer Skills Check · InTouch Projects</title>
-<meta name="description" content="Apply to join the InTouch Projects metal roofing team. Five minutes on your phone.">
+<title>Check Your Wage Against InTouch</title>
+<meta name="description" content="Metal roofers: see what your skills are worth at InTouch Projects. Five minutes on your phone.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -67,6 +67,8 @@ section.card.result{border:0;background:var(--navy);color:#fff}
 .pay{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
 .pay strong{font:700 clamp(34px,9vw,48px)/1 var(--display);color:var(--hivis);font-variant-numeric:tabular-nums}
 .pay span{color:#DCE4F1}
+.compare{padding:12px 14px;border-radius:8px;background:rgba(232,99,43,.16);border:1px solid rgba(232,99,43,.55);font-size:16px;line-height:1.45}
+.compare b{color:#fff;font-variant-numeric:tabular-nums}
 .note{margin:0;color:#DCE4F1;font-size:14.5px}
 .perks{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .perks li{padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.08)}
@@ -83,8 +85,8 @@ footer{font-size:13px;color:var(--steel);text-align:center}
 <body>
 <header class="top"><div class="in">
   <div class="eyebrow">InTouch Projects · Metal Roofing Team</div>
-  <h1>Roofer Skills Check</h1>
-  <p class="lede">Five minutes on your phone. Answer honestly and pick where you are today. At the end you'll see the level and pay range your answers point to.</p>
+  <h1>Check your wage against InTouch</h1>
+  <p class="lede">Metal roofers: tell us what you're paid now and what you can do on a roof. In five minutes you'll see what InTouch pays for your skills, side by side with your current wage.</p>
   <div class="steps" aria-hidden="true"><span id="s1" class="on"></span><span id="s2"></span><span id="s3"></span></div>
 </div></header>
 
@@ -104,7 +106,8 @@ footer{font-size:13px;color:var(--steel);text-align:center}
 
 <!-- STEP 2 -->
 <section class="card" id="step2" hidden aria-labelledby="h-step2">
-  <h2 id="h-step2">2. Experience and tickets</h2>
+  <h2 id="h-step2">2. Your wage and experience</h2>
+  <label class="f" for="wage">What's your hourly rate now? <span class="hint">(before tax, $ per hour; leave blank if you're not working)</span><input type="text" id="wage" inputmode="decimal" placeholder="e.g. 42.50"></label>
   <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend class="f" style="font-weight:600;margin-bottom:6px">How long have you been doing metal roofing?</legend>
     <div class="choices" id="years"></div></fieldset>
   <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend style="font-weight:600;margin-bottom:6px">Tick every ticket or licence you hold now</legend>
@@ -129,6 +132,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
   <div class="eyebrow">Your indicative level</div>
   <p class="tier" id="rTier"></p>
   <div class="pay"><strong id="rPay"></strong><span>per hour · 38-hour week</span></div>
+  <div class="compare" id="rCompare" hidden></div>
   <p class="note">This is a guide from your answers. Your starting rate is confirmed after a paid trial day and reference checks.</p>
   <ul class="perks" id="rPerks"></ul>
   <p class="note" id="sendStatus"></p>
@@ -201,7 +205,7 @@ const TICKET_GATE=[[],["wah"],["wah","asb","fa"],["wah","asb","fa","lic"]];
 
 /* ---------- state ---------- */
 const $=s=>document.querySelector(s);
-const st={name:"",phone:"",email:"",suburb:"",years:"",tickets:{},start:"",ratings:{},other:""};
+const st={wage:"",name:"",phone:"",email:"",suburb:"",years:"",tickets:{},start:"",ratings:{},other:""};
 const phoneOk=v=>v.replace(/\D/g,"").length>=8;
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let leadSent=false, sid=Math.random().toString(36).slice(2,10);
@@ -252,6 +256,9 @@ document.addEventListener("change",e=>{
   update();
 });
 $("#other").addEventListener("input",e=>{st.other=e.target.value});
+$("#wage").addEventListener("input",e=>{st.wage=e.target.value});
+const wageNum=()=>{const n=parseFloat(String(st.wage).replace(/[^0-9.]/g,""));return n>=15&&n<=200?n:null};
+const money=n=>"$"+Math.round(n).toLocaleString("en-AU");
 function ticketsAnswered(){return $("#t-none").checked||TICKETS.some(([v])=>st.tickets[v])}
 function update(){
   const total=QS.length+3;
@@ -295,9 +302,9 @@ function pdfHtml(r){
   const stepName=r.tier===3?"Team Leader rate":r.licensed?"Step 3 (Licensed Tradesman)":"Step "+(r.step+1);
   const when=new Date().toLocaleString("en-AU",{timeZone:"Australia/Brisbane",dateStyle:"medium",timeStyle:"short"});
   return `<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1A2230;margin:28px}h1{color:#1B2F52;font-size:20pt;margin:0}h2{color:#1B2F52;font-size:13pt;border-bottom:2px solid #1B2F52;padding-bottom:3px;margin-top:22px}.sub{color:#5E6B7E;margin:2px 0 14px}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #D8DDE5}th{width:42%;color:#444;font-weight:normal}td{font-weight:bold}.box{background:#FDEBE2;border:1px solid #E8632B;padding:10px 12px;margin-top:10px}</style></head><body>
-<h1>Metal Roofer Skills Check</h1><p class="sub">InTouch Projects · Submitted ${esc(when)}</p>
+<h1>Check Your Wage Against InTouch</h1><p class="sub">InTouch Projects · Submitted ${esc(when)}</p>
 <div class="box"><b>Indicative result:</b> ${esc(TIERS[r.tier].name)} · ${esc(stepName)} · $${r.rate.toFixed(2)}/hr${r.ute?" · ute + fuel card":""}<br>Applicant was shown the range ${esc(TIERS[r.tier].range)}/hr, subject to a paid trial day and reference checks.</div>
-<h2>About the applicant</h2><table>${rows([["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]])}</table>
+<h2>About the applicant</h2><table>${rows([["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"],["Current hourly rate",wageNum()?"$"+wageNum().toFixed(2):"Not given"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]])}</table>
 <h2>Skills (0 never done it – 4 can teach it)</h2><table>${rows(QS.map((q,i)=>[`${i+1}. ${q.t}`,`${st.ratings[q.id]} – ${SCALE[st.ratings[q.id]]}`]))}</table>
 ${r.next!==null?`<h2>To reach ${esc(TIERS[r.next].name)}</h2><p>${r.gaps.map(esc).join(" · ")||"Nothing on this check"}</p>`:""}
 <h2>Anything else</h2><p>${esc(st.other)||"–"}</p></body></html>`;
@@ -306,6 +313,14 @@ $("#submit").addEventListener("click",()=>{
   const r=score(), T=TIERS[r.tier];
   $("#rTier").textContent=T.name;
   $("#rPay").textContent=T.range;
+  const w=wageNum(), lo=T.rates[0], hi=T.rates[T.rates.length-1], cmp=$("#rCompare");
+  if(w){
+    let msg;
+    if(w<lo){const a=lo-w,b=hi-w;msg=`You're on <b>${w.toFixed(2)}</b>/hr now. At InTouch that's <b>${a===b?"$"+a.toFixed(2):"$"+a.toFixed(2)+" – $"+b.toFixed(2)}</b> more per hour, or <b>${a===b?money(a*1976):money(a*1976)+" – "+money(b*1976)}</b> more a year.`}
+    else if(w<hi){const b=hi-w;msg=`You're on <b>${w.toFixed(2)}</b>/hr now, inside this range. The top of your level pays <b>${b.toFixed(2)}</b> more per hour, or <b>${money(b*1976)}</b> more a year.`}
+    else msg=`You're on <b>${w.toFixed(2)}</b>/hr now, at or above this range. Talk to us: skills, tickets and a licence can take you up the ladder.`;
+    cmp.innerHTML=msg;cmp.hidden=false;
+  } else cmp.hidden=true;
   const perks=[];
   if(r.ute) perks.push("Company ute and fuel card, because you can complete a full roof on your own");
   if(r.tier===2) perks.push("Nine-day fortnight: paid for 10 days, work 9 (conditions apply)");
