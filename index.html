@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roofer Skills Check · InTouch Projects</title>
+<meta name="description" content="Apply to join the InTouch Projects metal roofing team. Five minutes on your phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2F52; --navy-2:#27416E; --steel:#5E6B7E; --line:#D8DDE5; --ground:#F3F5F8; --paper:#FFFFFF;
+  --hivis:#E8632B; --hivis-soft:#FDEBE2; --ok:#1F7A4D; --ok-soft:#E3F3EA; --ink:#1A2230;
+  --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.5 var(--body);padding:0 16px env(safe-area-inset-bottom,0px)}
+.wrap{max-width:680px;margin:0 auto;padding-block:20px 48px;display:grid;gap:18px}
+header.top{background:var(--navy);color:#fff;margin:0 -16px;padding:22px 16px 20px;padding-top:calc(22px + env(safe-area-inset-top,0px))}
+header.top .in{max-width:680px;margin:0 auto;display:grid;gap:6px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#AFC0DA}
+h1{font:700 clamp(28px,7vw,38px)/1.05 var(--display);margin:0;letter-spacing:.01em;text-wrap:balance}
+.lede{margin:0;color:#DCE4F1;max-width:60ch}
+.steps{display:flex;gap:8px;margin-top:10px}
+.steps span{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.22)}
+.steps span.on{background:var(--hivis)}
+section.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px}
+h2{font:700 22px/1.15 var(--display);margin:0;color:var(--navy);text-wrap:balance}
+.hint{margin:0;color:var(--steel);font-size:15px}
+label.f{display:grid;gap:6px;font-weight:600}
+input[type=text],input[type=tel],input[type=email],textarea,select{font:inherit;font-weight:400;width:100%;padding:12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus,select:focus,button:focus-visible,.opt input:focus-visible+span{outline:3px solid rgba(232,99,43,.35);outline-offset:1px;border-color:var(--hivis)}
+.saved{font-size:14px;color:var(--ok);font-weight:600;min-height:1.4em}
+.choices{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;background:#fff}
+.opt input{margin-top:3px;accent-color:var(--hivis);width:18px;height:18px;flex:none}
+.opt:has(input:checked){border-color:var(--hivis);background:var(--hivis-soft)}
+.skill{display:grid;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
+.skill:first-of-type{border-top:0;padding-top:0}
+.skill h3{margin:0;font:700 18px/1.2 var(--display);color:var(--navy)}
+.skill h3 b{color:var(--hivis);font-weight:700;margin-right:6px}
+.skill p{margin:0;color:var(--steel);font-size:14.5px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale label{position:relative;cursor:pointer}
+.scale input{position:absolute;opacity:0;inset:0}
+.scale span{display:grid;gap:2px;justify-items:center;text-align:center;padding:8px 2px;border:1.5px solid var(--line);border-radius:8px;font-size:11.5px;line-height:1.15;color:var(--steel);min-height:64px;align-content:center}
+.scale span b{font:700 20px/1 var(--display);color:var(--ink)}
+.scale input:checked+span{border-color:var(--hivis);background:var(--hivis-soft);color:var(--ink)}
+.scale input:focus-visible+span{outline:3px solid rgba(232,99,43,.35)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--steel)}
+.legend b{color:var(--ink)}
+.btn{font:700 17px/1 var(--display);letter-spacing:.03em;border:0;border-radius:8px;padding:15px 20px;background:var(--hivis);color:#fff;cursor:pointer;width:100%}
+.btn[disabled]{background:#C9CFD8;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1 1 180px}
+.err{color:#B3261E;font-weight:600;font-size:15px;margin:0}
+.progress{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding:8px 0;font-size:14px;color:var(--steel);display:flex;justify-content:space-between;gap:10px}
+/* result */
+.result{border:0;background:var(--navy);color:#fff}
+.result .eyebrow{color:#AFC0DA}
+.tier{font:700 clamp(30px,8vw,42px)/1 var(--display);margin:0}
+.pay{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.pay strong{font:700 clamp(34px,9vw,48px)/1 var(--display);color:var(--hivis);font-variant-numeric:tabular-nums}
+.pay span{color:#DCE4F1}
+.note{margin:0;color:#DCE4F1;font-size:14.5px}
+.perks{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.perks li{padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.08)}
+.ladder{display:grid;gap:6px}
+.rung{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font-variant-numeric:tabular-nums}
+.rung.me{border-color:var(--hivis);background:var(--hivis-soft);font-weight:700}
+.rung small{color:var(--steel);font-weight:400}
+ul.dot{margin:0;padding-left:20px;display:grid;gap:4px}
+.gaps li{color:var(--ink)}
+footer{font-size:13px;color:var(--steel);text-align:center}
+@media (prefers-reduced-motion:no-preference){.fade{animation:fade .35s ease-out}@keyframes fade{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <div class="eyebrow">InTouch Projects · Metal Roofing Team</div>
+  <h1>Roofer Skills Check</h1>
+  <p class="lede">Five minutes on your phone. Answer honestly and pick where you are today. At the end you'll see the level and pay range your answers point to.</p>
+  <div class="steps" aria-hidden="true"><span id="s1" class="on"></span><span id="s2"></span><span id="s3"></span></div>
+</div></header>
+
+<main class="wrap">
+
+<!-- STEP 1 -->
+<section class="card fade" id="step1" aria-labelledby="h-step1">
+  <h2 id="h-step1">1. Your details</h2>
+  <label class="f" for="name">Full name<input type="text" id="name" autocomplete="name" placeholder="First and last name"></label>
+  <label class="f" for="phone">Mobile number<input type="tel" id="phone" autocomplete="tel" inputmode="tel" placeholder="04xx xxx xxx"></label>
+  <label class="f" for="email">Email <span class="hint">(optional)</span><input type="email" id="email" autocomplete="email" placeholder="you@example.com"></label>
+  <label class="f" for="suburb">Suburb you live in<input type="text" id="suburb" autocomplete="address-level2" placeholder="e.g. Caloundra"></label>
+  <div class="saved" id="savedMsg" aria-live="polite"></div>
+  <p class="err" id="err1" hidden>Enter your name and a mobile number so we can call you.</p>
+  <button class="btn" id="next1" type="button">Next: your experience</button>
+</section>
+
+<!-- STEP 2 -->
+<section class="card" id="step2" hidden aria-labelledby="h-step2">
+  <h2 id="h-step2">2. Experience and tickets</h2>
+  <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend class="f" style="font-weight:600;margin-bottom:6px">How long have you been doing metal roofing?</legend>
+    <div class="choices" id="years"></div></fieldset>
+  <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend style="font-weight:600;margin-bottom:6px">Tick every ticket or licence you hold now</legend>
+    <div class="choices" id="tickets"></div></fieldset>
+  <fieldset style="border:0;padding:0;margin:0;display:grid;gap:8px"><legend style="font-weight:600;margin-bottom:6px">When could you start?</legend>
+    <div class="choices" id="start"></div></fieldset>
+</section>
+
+<section class="card" id="step3" hidden aria-labelledby="h-step3">
+  <h2 id="h-step3">3. Your skills on the roof</h2>
+  <p class="hint">For each part of the job, pick the answer that fits you best today.</p>
+  <div class="legend"><span><b>0</b> never done it</span><span><b>1</b> seen it / helped</span><span><b>2</b> with someone checking</span><span><b>3</b> on my own</span><span><b>4</b> can teach it</span></div>
+  <div id="skills"></div>
+  <label class="f" for="other">Anything else you'd like us to know? <span class="hint">(optional)</span><textarea id="other" rows="3"></textarea></label>
+</section>
+
+<div class="progress" id="progress" hidden><span id="progText">0 of 16 answered</span><span id="progHint">Answer every question to see your result</span></div>
+<button class="btn" id="submit" type="button" hidden disabled>See my result and send my application</button>
+
+<!-- RESULT -->
+<section class="card result fade" id="result" hidden aria-live="polite">
+  <div class="eyebrow">Your indicative level</div>
+  <p class="tier" id="rTier"></p>
+  <div class="pay"><strong id="rPay"></strong><span>per hour · 38-hour week</span></div>
+  <p class="note">This is a guide from your answers. Your starting rate is confirmed after a paid trial day and reference checks.</p>
+  <ul class="perks" id="rPerks"></ul>
+  <p class="note" id="sendStatus"></p>
+</section>
+
+<section class="card" id="roleCard" hidden>
+  <h2 id="rRoleTitle"></h2>
+  <p id="rPurpose" style="margin:0"></p>
+  <div><strong>What you'll do</strong><ul class="dot" id="rDuties"></ul></div>
+  <div><strong>What you need</strong><ul class="dot" id="rNeeds"></ul></div>
+  <div id="gapBox"><strong id="gapTitle"></strong><ul class="dot gaps" id="rGaps"></ul></div>
+</section>
+
+<section class="card" id="ladderCard" hidden>
+  <h2>The roofing pay ladder</h2>
+  <div class="ladder" id="ladder"></div>
+  <p class="hint">Rates are hourly on a 38-hour week, plus super. Overtime and award allowances are extra.</p>
+</section>
+
+<footer>InTouch Projects · Storm Damage Specialists · We only use your answers to assess your application.</footer>
+</main>
+
+<script>
+/* ---------- settings ---------- */
+// Power Automate "When a HTTP request is received" URL. Paste it here once the flow exists.
+const FLOW_URL = "";
+
+/* ---------- content ---------- */
+const YEARS=[["0.25","Less than 6 months"],["0.75","6 to 12 months"],["1.5","1 to 2 years"],["3","2 to 4 years"],["5","4 to 6 years"],["7","More than 6 years"]];
+const TICKETS=[["white","White Card (construction induction)"],["wah","Working at Heights"],["asb","Asbestos awareness"],["fa","First Aid (HLTAID011)"],["cert3","Cert III Roof Plumbing – completed"],["cert3e","Cert III Roof Plumbing – enrolled"],["qbcc","QBCC Roof & Wall Cladding licence"],["plumb","Roof plumbing / plumbing licence"],["ewp","EWP (Yellow Card)"],["drv","Driver licence"]];
+const STARTS=["Straight away","Within 2 weeks","Within a month","More than a month"];
+const SCALE=["Never done it","Seen it / helped","With someone checking","On my own","Can teach it"];
+// req = minimum rating for [Tier 1, Tier 2, Tier 3, Team Leader]
+const QS=[
+ {id:"safety",t:"Safety and site set-up",d:"SWMS, ladders, harness and anchors, voltage-testing the roof, earthing checks, asbestos awareness, protecting the site",req:[2,3,3,4]},
+ {id:"removal",t:"Roof Removal (Re-Roofing)",d:"Removing ridge caps and flashings, unscrewing and lifting old sheets or tiles, lowering waste to the skip, spotting hidden damage",req:[2,3,3,4]},
+ {id:"battens",t:"Batten Replacement (Metal / Timber) and Basic Tie Downs",d:"Checking the roof is square, replacing timber battens, fixing metal top-hat battens, basic tie-down straps and screws, straightening fascia",req:[0,3,3,4]},
+ {id:"insul",t:"Insulation Installation (Sarking / Anticon / Bushfire)",d:"Sarking and Anticon blanket square to the gutter, lapping and taping, draping into the gutter, cutting in around penetrations, bushfire-rated (BAL) blanket and sarking",req:[2,3,3,4]},
+ {id:"sheets",t:"Ground Spread (Ridges / Valleys / Sheets) / Laying Sheets / Screwing Off",d:"Sorting and pre-cutting ridges, valleys and sheets on the ground, setting out the first sheet, gutter overhang, side laps, laying sheets, screwing off in straight rows, turn-ups and turn-downs",req:[2,3,3,4]},
+ {id:"valleys",t:"Cutting Valleys / Installing Ridge Caps",d:"Marking cut lines, cutting valleys and hips, valley gaps, valley irons and clips, installing ridge and hip caps with foam closures",req:[1,3,3,4]},
+ {id:"scribe",t:"Scribing",d:"Scribing sheets and flashings to walls, fascias and out-of-square lines",req:[0,2,3,4]},
+ {id:"flash",t:"Barge Cap Flashings / Gable Rolls / Flashings",d:"Barge caps, gable rolls, apron and wall flashings, step flashings, Dektites, skylight kits, chimney back trays, folding and ordering custom flashings",req:[0,2,3,4]},
+ {id:"rivet",t:"Riveting off and sealing",d:"Stitching laps with sealed rivets, neutral-cure silicone, which metals can't be mixed, swarf removal",req:[0,3,3,4]},
+ {id:"gutter",t:"Fascia, gutters and downpipes",d:"Setting gutter fall, brackets, joins and stop-ends, outlets and sumps, downpipes, overflow measures",req:[0,2,3,4]},
+ {id:"parapet",t:"Parapets and box gutters",d:"Parapet cappings and flashings, box gutters, sumps, overflows and rainheads",req:[0,1,3,4]},
+ {id:"quality",t:"Quality and paperwork",d:"Photos of the job, final walk-over, water tests, job notes, dealing with the customer on site",req:[0,3,3,4]},
+ {id:"crew",t:"Running a crew",d:"Reading the scope and planning the day, ordering materials, toolbox talks, allocating the crew, managing hours",req:[0,1,2,3]}
+];
+const ROOF=QS.filter(q=>q.id!=="crew");
+const TIERS=[
+ {name:"Tier 1 – Roofing Hand",range:"$35 – $42",rates:[35,38.5,42],
+  purpose:"Keeps the roof and the site safe, clean and supplied, and learns the core steps of a metal re-roof alongside an experienced roofer. By the top of the tier you do the core steps on your own and cut valleys and fit ridge caps.",
+  duties:["Site set-up and pack-down: drop sheets, tarps, protecting gardens, skylights and solar panels, ladders tied off","Roof removal: lifting caps, flashings and old sheets, lowering waste safely to the skip","Insulation: sarking and Anticon rolled out square, lapped, taped and draped into the gutter","Ground spread, laying sheets and screwing off in straight, string-lined rows","Daily swarf sweep and magnet run; voltage-testing the roof once trained"],
+  needs:["White Card","Working at Heights, or willing to do it in your first 30 days","Driver licence preferred","No roofing experience needed at entry"]},
+ {name:"Tier 2 – Roofer",range:"$47 – $55",rates:[47,51,55],
+  purpose:"Completes a standard residential metal re-roof or repair section on their own, from set-out through sheeting, cutting in, capping and riveting off, to a clean, leak-free finish.",
+  duties:["Batten replacement (metal and timber) and basic tie-downs","Setting out, laying sheets and screwing off a full roof face","Cutting valleys, valley irons and installing ridge caps","Barge caps, gable rolls and flashings under guidance; riveting off and sealing","Fascia, gutters and downpipes to fall; photos and notes for every job","Helping train Tier 1 roofing hands"],
+  needs:["White Card and Working at Heights","1+ year of metal roofing","First Aid within 6 months of starting","Cert III Roof Plumbing enrolment or RPL encouraged"]},
+ {name:"Tier 3 – Senior Roofer",range:"$60 – $65",rates:[60,62.5,65],
+  purpose:"The most skilled pair of hands in the crew. Takes on the hard roofs: multiple valleys, parapets, box gutters and custom flashings. Runs the roof on the day when the Team Leader is off site, and teaches Tier 1 and 2.",
+  duties:["Running the roof on the day: toolbox talk, SWMS check, task allocation, weather calls","Complex roofs: multiple valleys and hips, dormers, skillion and low-pitch roofs","Parapet cappings, box gutters, sumps and rainheads","Scribing to any surface; measuring and ordering custom flashings","Final walk-over and water tests; coaching and signing off Tier 1 and 2"],
+  needs:["White Card, Working at Heights, Asbestos awareness and First Aid","2+ years of metal roofing","Able to do every roofing skill on your own, first time right","A licence isn't required for Tier 3; a QBCC Roof & Wall Cladding or plumbing licence opens the $65 Licensed Tradesman rate"]},
+ {name:"Roofing Team Leader",range:"$70",rates:[70],
+  purpose:"Runs the roofing crews across multiple residential jobs. Owns safety, quality, productivity and training, signs off every roof, and is the roofing contact for Supervisors and the Construction Manager.",
+  duties:["Reading the scope, planning each job and ordering materials right first time","Allocating crews and managing jobs to budgeted hours","Toolbox talks, SWMS reviews and enforcing PPE and voltage testing","Final quality sign-off on every roof; owning any leak callbacks","Reviewing skills checks with the team and recommending tier moves"],
+  needs:["All Tier 3 tickets plus a QBCC Roof & Wall Cladding or plumbing licence","3+ years of metal roofing","Able to teach every roofing skill and run a crew of 2–4 on your own"]}
+];
+const YEARS_MIN=[0,1,2,3];
+const TICKET_GATE=[[],["wah"],["wah","asb","fa"],["wah","asb","fa","lic"]];
+
+/* ---------- state ---------- */
+const $=s=>document.querySelector(s);
+const st={name:"",phone:"",email:"",suburb:"",years:"",tickets:{},start:"",ratings:{},other:""};
+const phoneOk=v=>v.replace(/\D/g,"").length>=8;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let leadSent=false, sid=Math.random().toString(36).slice(2,10);
+
+/* ---------- render ---------- */
+$("#years").innerHTML=YEARS.map(([v,l])=>`<label class="opt"><input type="radio" name="years" id="y-${v}" value="${v}"><span>${l}</span></label>`).join("");
+$("#tickets").innerHTML=TICKETS.map(([v,l])=>`<label class="opt"><input type="checkbox" id="t-${v}" value="${v}"><span>${l}</span></label>`).join("")+`<label class="opt"><input type="checkbox" id="t-none" value="none"><span>None of these yet</span></label>`;
+$("#start").innerHTML=STARTS.map((l,i)=>`<label class="opt"><input type="radio" name="start" id="st-${i}" value="${l}"><span>${l}</span></label>`).join("");
+$("#skills").innerHTML=QS.map((q,i)=>`<div class="skill" role="radiogroup" aria-labelledby="sk-${q.id}">
+  <h3 id="sk-${q.id}"><b>${i+1}</b>${q.t}</h3><p>${q.d}</p>
+  <div class="scale">${SCALE.map((l,v)=>`<label><input type="radio" name="q-${q.id}" id="q-${q.id}-${v}" value="${v}"><span><b>${v}</b>${l}</span></label>`).join("")}</div></div>`).join("");
+
+/* ---------- sending ---------- */
+function send(payload){
+  if(!FLOW_URL) return Promise.resolve(false);
+  const body=JSON.stringify(payload);
+  return fetch(FLOW_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body,keepalive:true}).then(()=>true,()=>false);
+}
+function leadHtml(){
+  return `<h2 style="font-family:Calibri,Arial;color:#1B2F52">New roofer lead</h2><p style="font-family:Calibri,Arial">They've entered their details and started the skills check. You'll get a PDF if they finish it.</p><table style="font-family:Calibri,Arial;border-collapse:collapse">${[["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"]].map(([k,v])=>`<tr><td style="padding:4px 12px 4px 0;color:#5E6B7E">${k}</td><td style="padding:4px 0"><b>${esc(v)}</b></td></tr>`).join("")}</table>`;
+}
+function sendLead(){
+  if(leadSent||!st.name.trim()||!phoneOk(st.phone)) return;
+  leadSent=true;
+  send({type:"lead",sid,subject:`New roofer lead: ${st.name.trim()} (${st.phone.trim()})`,html:leadHtml()}).then(ok=>{if(ok)$("#savedMsg").textContent="Saved. We've got your details."});
+}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")sendLead()});
+
+/* ---------- step 1 ---------- */
+["name","phone","email","suburb"].forEach(k=>$("#"+k).addEventListener("input",e=>{st[k]=e.target.value}));
+["name","phone"].forEach(k=>$("#"+k).addEventListener("blur",sendLead));
+$("#next1").addEventListener("click",()=>{
+  if(!st.name.trim()||!phoneOk(st.phone)){$("#err1").hidden=false;return}
+  $("#err1").hidden=true; sendLead();
+  $("#step1").hidden=true; ["#step2","#step3","#progress","#submit"].forEach(s=>$(s).hidden=false);
+  $("#s2").classList.add("on"); window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  update();
+});
+
+/* ---------- step 2/3 ---------- */
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.name==="years") st.years=t.value;
+  else if(t.name==="start") st.start=t.value;
+  else if(t.id==="t-none"){ if(t.checked){TICKETS.forEach(([v])=>{$("#t-"+v).checked=false;st.tickets[v]=false})} }
+  else if(t.id&&t.id.startsWith("t-")){ st.tickets[t.value]=t.checked; if(t.checked)$("#t-none").checked=false }
+  else if(t.name&&t.name.startsWith("q-")) st.ratings[t.name.slice(2)]=+t.value;
+  update();
+});
+$("#other").addEventListener("input",e=>{st.other=e.target.value});
+function ticketsAnswered(){return $("#t-none").checked||TICKETS.some(([v])=>st.tickets[v])}
+function update(){
+  const total=QS.length+3;
+  const n=QS.filter(q=>st.ratings[q.id]!==undefined).length+(st.years?1:0)+(st.start?1:0)+(ticketsAnswered()?1:0);
+  $("#progText").textContent=`${n} of ${total} answered`;
+  $("#progHint").hidden=n===total;
+  $("#submit").disabled=n!==total;
+}
+
+/* ---------- scoring ---------- */
+function score(){
+  const R=st.ratings,T=st.tickets,yrs=+st.years;
+  const lic=!!(T.qbcc||T.plumb);
+  const ticketOk=i=>TICKET_GATE[i].every(t=>t==="lic"?lic:T[t]);
+  const skillsOk=i=>QS.every(q=>R[q.id]>=q.req[i]);
+  let tier=0;
+  for(let i=1;i<4;i++){ if(skillsOk(i)&&ticketOk(i)&&yrs>=YEARS_MIN[i]) tier=i; else break; }
+  const roofAll3=ROOF.every(q=>R[q.id]>=3);
+  const licQual=lic&&roofAll3&&T.wah&&T.asb&&yrs>=2;
+  if(licQual&&tier<2) tier=2;
+  const teach=ROOF.filter(q=>R[q.id]>=4).length;
+  let step=0, licensed=false;
+  if(tier===2){ if(licQual){step=2;licensed=true} else if(teach>=7) step=1; }
+  else if(tier===1){ const f=QS.filter(q=>R[q.id]>=q.req[2]).length; step=f===QS.length?2:f>=7?1:0; }
+  else if(tier===0){ const core=["safety","removal","insul","sheets"].every(k=>R[k]>=3); step=core&&R.valleys>=3?2:core?1:0; }
+  const rate=TIERS[tier].rates[Math.min(step,TIERS[tier].rates.length-1)];
+  const ute=roofAll3||tier===3;
+  const next=tier<3?tier+1:null, gaps=[];
+  if(next!==null){
+    QS.forEach(q=>{if(R[q.id]<q.req[next])gaps.push(`${q.t}: ${SCALE[q.req[next]].toLowerCase()}`)});
+    TICKET_GATE[next].forEach(t=>{ if(t==="lic"?!lic:!T[t]) gaps.push(t==="lic"?"A QBCC Roof & Wall Cladding or plumbing licence":TICKETS.find(x=>x[0]===t)[1]) });
+    if(yrs<YEARS_MIN[next]) gaps.push(`${YEARS_MIN[next]}+ years of metal roofing`);
+  }
+  return {tier,step,rate,licensed,ute,next,gaps};
+}
+
+/* ---------- result ---------- */
+function pdfHtml(r){
+  const rows=(pairs)=>pairs.map(([k,v])=>`<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join("");
+  const tk=TICKETS.filter(([v])=>st.tickets[v]).map(x=>x[1]).join(", ")||"None";
+  const stepName=r.tier===3?"Team Leader rate":r.licensed?"Step 3 (Licensed Tradesman)":"Step "+(r.step+1);
+  const when=new Date().toLocaleString("en-AU",{timeZone:"Australia/Brisbane",dateStyle:"medium",timeStyle:"short"});
+  return `<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#1A2230;margin:28px}h1{color:#1B2F52;font-size:20pt;margin:0}h2{color:#1B2F52;font-size:13pt;border-bottom:2px solid #1B2F52;padding-bottom:3px;margin-top:22px}.sub{color:#5E6B7E;margin:2px 0 14px}table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #D8DDE5}th{width:42%;color:#444;font-weight:normal}td{font-weight:bold}.box{background:#FDEBE2;border:1px solid #E8632B;padding:10px 12px;margin-top:10px}</style></head><body>
+<h1>Metal Roofer Skills Check</h1><p class="sub">InTouch Projects · Submitted ${esc(when)}</p>
+<div class="box"><b>Indicative result:</b> ${esc(TIERS[r.tier].name)} · ${esc(stepName)} · $${r.rate.toFixed(2)}/hr${r.ute?" · ute + fuel card":""}<br>Applicant was shown the range ${esc(TIERS[r.tier].range)}/hr, subject to a paid trial day and reference checks.</div>
+<h2>About the applicant</h2><table>${rows([["Name",st.name],["Mobile",st.phone],["Email",st.email||"–"],["Suburb",st.suburb||"–"],["Metal roofing experience",(YEARS.find(y=>y[0]===st.years)||[,""])[1]],["Tickets and licences",tk],["Can start",st.start]])}</table>
+<h2>Skills (0 never done it – 4 can teach it)</h2><table>${rows(QS.map((q,i)=>[`${i+1}. ${q.t}`,`${st.ratings[q.id]} – ${SCALE[st.ratings[q.id]]}`]))}</table>
+${r.next!==null?`<h2>To reach ${esc(TIERS[r.next].name)}</h2><p>${r.gaps.map(esc).join(" · ")||"Nothing on this check"}</p>`:""}
+<h2>Anything else</h2><p>${esc(st.other)||"–"}</p></body></html>`;
+}
+$("#submit").addEventListener("click",()=>{
+  const r=score(), T=TIERS[r.tier];
+  $("#rTier").textContent=T.name;
+  $("#rPay").textContent=T.range;
+  const perks=[];
+  if(r.ute) perks.push("Company ute and fuel card, because you can complete a full roof on your own");
+  if(r.tier===2) perks.push("Nine-day fortnight: paid for 10 days, work 9 (conditions apply)");
+  if(r.tier===2&&!r.licensed) perks.push("A QBCC Roof & Wall Cladding or plumbing licence takes you to the $65 Licensed Tradesman rate");
+  $("#rPerks").innerHTML=perks.map(p=>`<li>${esc(p)}</li>`).join("");
+  $("#rRoleTitle").textContent="The role: "+T.name;
+  $("#rPurpose").textContent=T.purpose;
+  $("#rDuties").innerHTML=T.duties.map(d=>`<li>${esc(d)}</li>`).join("");
+  $("#rNeeds").innerHTML=T.needs.map(d=>`<li>${esc(d)}</li>`).join("");
+  if(r.next!==null&&r.gaps.length){$("#gapTitle").textContent="To move up to "+TIERS[r.next].name;$("#rGaps").innerHTML=r.gaps.map(g=>`<li>${esc(g)}</li>`).join("");$("#gapBox").hidden=false}else $("#gapBox").hidden=true;
+  $("#ladder").innerHTML=TIERS.map((t,i)=>`<div class="rung${i===r.tier?" me":""}"><span>${t.name}${i===r.tier?" <small>· your level</small>":""}</span><span>${t.range}/hr</span></div>`).join("");
+  ["#step2","#step3","#progress","#submit"].forEach(s=>$(s).hidden=true);
+  ["#result","#roleCard","#ladderCard"].forEach(s=>$(s).hidden=false);
+  $("#s3").classList.add("on");
+  window.scrollTo({top:0,behavior:"auto"});
+  $("#sendStatus").textContent="Sending your application…";
+  const payload={type:"full",sid,subject:`New roofer applicant: ${st.name.trim()} – ${T.name}`,
+    filename:`Roofer applicant - ${st.name.trim().replace(/[\\/:*?"<>|]/g,"")}.pdf`,html:pdfHtml(r)};
+  send(payload).then(ok=>{$("#sendStatus").textContent=ok?`Application sent. We'll call you on ${st.phone.trim()}.`:`We couldn't send your application just now. Please call or text us your name and this result.`});
+});
+</script>
+</body>
+</html>
