@@ -73,6 +73,13 @@ section.card.result{border:0;background:var(--navy);color:#fff}
 .call span{font:700 19px/1.2 var(--display)}
 .call .btn{display:block;text-align:center;text-decoration:none}
 .call .btn.ghost{color:#fff;border-color:rgba(255,255,255,.45)}
+.nineday{display:flex;gap:16px;align-items:center;background:var(--hivis);color:#fff;border-radius:10px;padding:16px 18px}
+.nd-big{display:flex;align-items:center;gap:6px;flex:none}
+.nd-big span{font:700 64px/.85 var(--display)}
+.nd-big small{font:700 15px/1.05 var(--display);text-transform:uppercase;letter-spacing:.06em}
+.nd-copy{display:grid;gap:2px}
+.nd-copy strong{font:700 20px/1.15 var(--display);text-wrap:balance}
+.nd-copy em{font-style:normal;font-size:13px;opacity:.85}
 .note{margin:0;color:#DCE4F1;font-size:14.5px}
 .perks{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .perks li{padding:9px 12px;border-radius:8px;background:rgba(255,255,255,.08)}
@@ -95,6 +102,11 @@ footer{font-size:13px;color:var(--steel);text-align:center}
 </div></header>
 
 <main class="wrap">
+
+<section class="nineday" aria-label="Nine-day fortnight">
+  <div class="nd-big"><span>9</span><small>day<br>fortnight</small></div>
+  <div class="nd-copy"><strong>Every InTouch employee works a nine-day fortnight.</strong><span>9 days on the tools, paid for 10. Every second Friday off.</span><em>T&amp;Cs apply.</em></div>
+</section>
 
 <!-- STEP 1 -->
 <section class="card fade" id="step1" aria-labelledby="h-step1">
@@ -154,7 +166,7 @@ footer{font-size:13px;color:var(--steel);text-align:center}
 <section class="card" id="ladderCard" hidden>
   <h2>The roofing pay ladder</h2>
   <div class="ladder" id="ladder"></div>
-  <p class="hint">Rates are hourly on a 38-hour week, plus super. Overtime and award allowances are extra.</p>
+  <p class="hint">Every level works a nine-day fortnight (T&amp;Cs apply). Rates are hourly on a 38-hour week, plus super. Overtime and award allowances are extra.</p>
 </section>
 
 <footer>InTouch Projects · Storm Damage Specialists · Jobs: Billy 0488 033 766 · We only use your answers to assess your application.</footer>
@@ -328,7 +340,7 @@ $("#submit").addEventListener("click",()=>{
   } else cmp.hidden=true;
   const perks=[];
   if(r.ute) perks.push("Company ute and fuel card, because you can complete a full roof on your own");
-  if(r.tier===2) perks.push("Nine-day fortnight: paid for 10 days, work 9 (conditions apply)");
+  perks.push("Nine-day fortnight: work 9 days, paid for 10 (T&Cs apply)");
   if(r.tier===2&&!r.licensed) perks.push("A QBCC Roof & Wall Cladding or plumbing licence takes you to the $65 Licensed Tradesman rate");
   $("#rPerks").innerHTML=perks.map(p=>`<li>${esc(p)}</li>`).join("");
   $("#rRoleTitle").textContent="The role: "+T.name;
